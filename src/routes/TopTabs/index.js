@@ -12,7 +12,7 @@ export default function TopTabs() {
   return (
     <Tab.Navigator initialRouteName="NotFollowing" tabBarOptions={{
       tabStyle: {
-        backgroundColor: '#2D2B2B',
+        backgroundColor: '#212B2B',
       },
       labelStyle: {
         fontSize: 11,
