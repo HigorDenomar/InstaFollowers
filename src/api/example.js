@@ -1,9 +1,8 @@
-const Insta = require('./index'); 
-const insta = new Insta('kaioprates','teste123456');
+const Insta = require('./index'); 	
+const insta = new Insta('user','password');
 
-async function auth(){
-    const res   =  await insta.auth().then(e => e); 
-    console.log(res)
+async function test(){
+   await insta.auth(); 
+   const res  =  await insta.getFullFollowers().then(e=>console.log(e)); 
 }
-
-auth(); 
+test()
