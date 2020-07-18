@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2D2B2B',
+    backgroundColor: '#18191A',
   },
   profile: {
     flexDirection: 'row',
@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
   nameProfile: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: '#fff',
+    color: '#bbb',
   },
   description: {
-    color: '#fff',
+    color: '#bbb',
     fontWeight: '200',
     lineHeight: 18,
   },
@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   title: {
-    color: '#fff',
+    color: '#bbb',
     fontSize: 18,
   },
   text: {
-    color: '#fff'
+    color: '#bbb'
   }
 });
 

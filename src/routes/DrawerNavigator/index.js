@@ -24,7 +24,7 @@ export default function DrawerNavigator() {
         backgroundColor: '#121212',
       }}
       drawerContentOptions={{
-        activeTintColor: "#fff",
+        activeTintColor: "#bbb",
         inactiveTintColor: "#eee",
       }}
     >

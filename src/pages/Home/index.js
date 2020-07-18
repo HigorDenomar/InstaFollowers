@@ -18,7 +18,7 @@ export default function Home({ navigation }) {
         <Text style={styles.title}>username</Text>
         <Icon
           name="menu"
-          color='#fff'
+          color='#bbb'
           size={28}
           onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
         />
