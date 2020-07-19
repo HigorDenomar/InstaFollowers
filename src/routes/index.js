@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 
 import Login from '../pages/Login';
@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator
         screenOptions={{
           cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,

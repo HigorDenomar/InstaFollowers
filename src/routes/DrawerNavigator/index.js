@@ -21,7 +21,7 @@ export default function DrawerNavigator() {
       initialRouteName="Home"
       drawerStyle={{
         width: '65%',
-        backgroundColor: '#121212',
+        backgroundColor: '#000000',
       }}
       drawerContentOptions={{
         activeTintColor: "#bbb",
