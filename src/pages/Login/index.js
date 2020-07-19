@@ -7,11 +7,14 @@ import {
   Text,
 } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
+import { useTheme } from '@react-navigation/native';
 
 import styles from './styles';
 
 export default function Login({ navigation }) {
   const [viewPassword, setViewPassword] = useState(false);
+
+  const { colors } = useTheme();
 
   function navigateToHome() {
     navigation.navigate('Home');
@@ -19,28 +22,28 @@ export default function Login({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.appName} >InstaFollowers</Text>
+      <Text style={[ styles.appName, { color: colors.text }]} >InstaFollowers</Text>
 
       <View>
-        <View style={styles.inputContainer}>
-          <Icon name="user" size={20} color="#bbb" />
+        <View style={[ styles.inputContainer, { backgroundColor: colors.card }]}>
+          <Icon name="user" size={20} color={colors.text} />
           <TextInput
-            style={styles.input}
+            style={[styles.input, { color: colors.text }]}
             placeholder="Nome de usuário..."
-            placeholderTextColor="#999"
+            placeholderTextColor={ colors.placeholder }
             autoCompleteType="username"
             returnKeyType="next"
-            onSubmitEditing={() => this.password.focus()}
+           // onSubmitEditing={() => this.password.focus()}
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="#bbb" />
+        <View style={[ styles.inputContainer, { backgroundColor: colors.card }]}>
+          <Icon name="lock" size={20} color={colors.text} />
           <TextInput
             style={styles.input}
-            ref={(input) => this.password = input}
+          //  ref={(input) => this.password = input}
             placeholder="Senha..."
-            placeholderTextColor="#999"
+            placeholderTextColor={colors.placeholder}
             autoCompleteType="password"
             returnKeyType="done"
             onSubmitEditing={navigateToHome}
@@ -50,24 +53,24 @@ export default function Login({ navigation }) {
             <Icon
               name="eye-off"
               size={20}
-              color="#bbb"
+              color={colors.text}
               onPress={() => setViewPassword(!viewPassword)}
             />
             :
             <Icon
               name="eye"
               size={20}
-              color="#bbb"
+              color={colors.text}
               onPress={() => setViewPassword(!viewPassword)}
             />
           }
         </View>
         
         <TouchableOpacity
-          style={styles.buttonLogin}
+          style={[styles.buttonLogin, { borderColor: colors.text }]}
           onPress={navigateToHome}
         >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={{ color: colors.text }}>Login</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

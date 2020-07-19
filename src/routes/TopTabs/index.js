@@ -1,5 +1,6 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useTheme } from '@react-navigation/native';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -8,16 +9,16 @@ import Followers from '../../pages/Followers';
 import Following from '../../pages/Following';
 
 export default function TopTabs() {
-
+  const { colors } = useTheme();
   return (
     <Tab.Navigator initialRouteName="NotFollowing" tabBarOptions={{
       tabStyle: {
-        backgroundColor: '#242526',
+        backgroundColor: colors.card,
       },
       labelStyle: {
         fontSize: 11,
       },
-      activeTintColor: '#bbb',
+      activeTintColor: colors.text,
     }}>
       <Tab.Screen
         name="NotFollowing"
