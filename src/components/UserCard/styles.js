@@ -18,15 +18,10 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   userName: {
-    color: '#bbb',
     fontSize: 16,
-  },
-  name: {
-    color: '#777',
   },
   buttonRemove: {
     borderWidth: 0.5,
-    borderColor: '#bbb',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
@@ -34,7 +29,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   buttonRemoveText: {
-    color: '#bbb',
     fontSize: 12,
   },
 });
