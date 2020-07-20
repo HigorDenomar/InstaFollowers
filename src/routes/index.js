@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AuthContext from '../contexts/auth';
-import ThemeContext from '../contexts/ThemeContext';
+import { useAuthContext } from '../contexts/auth';
+import { useThemeContext } from '../contexts/ThemeContext';
 
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
@@ -12,8 +12,8 @@ import LightTheme from '../themes/LightTheme';
 import Loading from '../components/Loading';
 
 export default function() {
-  const { theme, loadTheme } = useContext(ThemeContext);
-  const { signed, loading } = useContext(AuthContext);
+  const { theme, loadTheme } = useThemeContext();
+  const { signed, loading } = useAuthContext();
 
   if(loading || loadTheme) {
     return <Loading />

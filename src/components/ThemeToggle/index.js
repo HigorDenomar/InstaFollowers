@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -7,11 +7,11 @@ import {
 import { Feather as Icon } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 
-import ThemeContext from "../../contexts/ThemeContext";
+import { useThemeContext } from "../../contexts/ThemeContext";
 import styles from './styles';
 
 const ThemeToggler = () => {
-  const { theme, changeTheme } = useContext(ThemeContext);
+  const { theme, changeTheme } = useThemeContext();
   const { colors } = useTheme();
 
   async function handleTheme() {

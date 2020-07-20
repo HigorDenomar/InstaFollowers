@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -10,13 +10,13 @@ import { Feather as Icon } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 
 import styles from './styles';
-import AuthContext from '../../contexts/auth';
+import { useAuthContext } from '../../contexts/auth';
 
 export default function Login() {
   const [viewPassword, setViewPassword] = useState(false);
 
   const { colors } = useTheme();
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuthContext();
 
   function handleSignIn() {
     signIn();

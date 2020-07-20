@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -12,12 +12,13 @@ import Icon from '@expo/vector-icons/Feather';
 import Home from '../../pages/Home';
 import ThemeToggle from '../../components/ThemeToggle';
 
-import AuthContext from '../../contexts/auth';
+import { useAuthContext } from '../../contexts/auth';
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
   const { colors } = useTheme();
+
   return(
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
@@ -47,7 +48,7 @@ export default function DrawerNavigator() {
 }
 
 function CustomDrawer(props) {
-  const { signOut } = useContext(AuthContext);
+  const { signOut } = useAuthContext();
   const { colors } = useTheme();
 
   return (
