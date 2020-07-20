@@ -42,7 +42,7 @@ export default function Login() {
         <View style={[ styles.inputContainer, { backgroundColor: colors.card }]}>
           <Icon name="lock" size={20} color={colors.text} />
           <TextInput
-            style={styles.input}
+            style={[styles.input, { color: colors.text }]}
             ref={(input) => password = input}
             placeholder="Senha..."
             placeholderTextColor={colors.placeholder}
