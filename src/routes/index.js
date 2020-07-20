@@ -12,14 +12,12 @@ import LightTheme from '../themes/LightTheme';
 import Loading from '../components/Loading';
 
 export default function() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, loadTheme } = useContext(ThemeContext);
   const { signed, loading } = useContext(AuthContext);
 
-  if(loading) {
+  if(loading || loadTheme) {
     return <Loading />
   }
-
-  console.log('Dark: ' + Boolean(theme === 'dark'))
 
   return (
     <NavigationContainer theme={theme === 'dark' ? DarkTheme : LightTheme}>

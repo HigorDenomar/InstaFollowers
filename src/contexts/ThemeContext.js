@@ -5,31 +5,31 @@ const ThemeContext = createContext({theme: 'dark'});
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState('dark');
+  const [loadTheme, setLoadTheme] = useState(true);
+
+  async function loadStorageData() {
+    const storagedTheme = await AsyncStorage.getItem('@RNTheme:theme');
+    
+    if(storagedTheme) {
+      setTheme(storagedTheme);
+    } else {
+      await AsyncStorage.setItem('@RNTheme:theme', theme);
+    }
+    setLoadTheme(false);
+  }
+  
+  async function changeTheme() {
+    await AsyncStorage.setItem('@RNTheme:theme', theme === "dark" ? "light" : "dark");
+    
+    loadStorageData();
+  }
 
   useEffect(() => {
-    async function loadStorageData() {
-      const storagedTheme = await AsyncStorage.getItem('@RNTheme:theme');
-
-      
-      if(storagedTheme) {
-        setTheme(storagedTheme);
-      } else {
-        await AsyncStorage.setItem('@RNTheme:theme', theme);
-      }
-      console.log('Storage: ' + storagedTheme);
-    }
-
     loadStorageData();
   }, []);
 
-  async function changeTheme() {
-    await AsyncStorage.setItem('@RNTheme:theme', theme).then(() => {
-      setTheme(theme === "dark" ? "light" : "dark");
-    });
-  }
-
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider value={{ theme, changeTheme, loadTheme }}>
       { children }
     </ThemeContext.Provider>
   )

@@ -29,10 +29,9 @@ export function AuthProvider({ children }) {
     await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
   }
 
-  function signOut() {
-    AsyncStorage.clear().then(() => {
-      setUser(null);
-    });
+  async function signOut() {
+    setUser(null);
+    await AsyncStorage.setItem('@RNAuth:user', '');
   }
 
   return (

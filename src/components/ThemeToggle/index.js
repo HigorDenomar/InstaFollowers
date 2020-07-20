@@ -15,10 +15,8 @@ const ThemeToggler = () => {
   const { colors } = useTheme();
 
   async function handleTheme() {
-    changeTheme();
-    console.log('\n\nChange to: ' + theme);
+    await changeTheme();
   }
-
 
   return (
     <View
