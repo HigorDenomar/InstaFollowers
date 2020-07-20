@@ -1,19 +1,18 @@
-import React from 'react';
-import {
-  View,
-  Text
-} from 'react-native';
+import React, { useContext } from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import { Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import Icon from '@expo/vector-icons/Feather';
 
 import Home from '../../pages/Home';
 import ThemeToggle from '../../components/ThemeToggle';
+
+import AuthContext from '../../contexts/auth';
 
 const Drawer = createDrawerNavigator();
 
@@ -47,10 +46,18 @@ export default function DrawerNavigator() {
   );
 }
 
-function CustomDrawer(props, { navigation }) {
+function CustomDrawer(props) {
+  const { signOut } = useContext(AuthContext);
+  const { colors } = useTheme();
 
   return (
     <DrawerContentScrollView {...props}>
+      <Text style={{
+        color: colors.text,
+        fontSize: 18,
+        marginVertical: 8,
+        marginLeft: 10,
+      }}>username</Text>
       <DrawerItemList {...props} />
 
       <ThemeToggle />
@@ -61,7 +68,7 @@ function CustomDrawer(props, { navigation }) {
           <Icon name="log-out" color={color} size={size} />
         )}
         onPress={() => {
-        //  navigation.navigate('Login');
+          signOut();
         }}
       />
     </DrawerContentScrollView>

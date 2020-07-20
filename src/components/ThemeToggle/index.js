@@ -7,30 +7,31 @@ import {
 import { Feather as Icon } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 
-import ThemeContext from "../../context/ThemeContext";
+import ThemeContext from "../../contexts/ThemeContext";
 import styles from './styles';
 
 const ThemeToggler = () => {
-  const [themeMode, setThemeMode] = useContext(ThemeContext);
+  const { theme, changeTheme } = useContext(ThemeContext);
   const { colors } = useTheme();
 
-  function handleTheme() {
-    setThemeMode(themeMode === "dark" ? "light" : "dark");
+  async function handleTheme() {
+    changeTheme();
+    console.log('\n\nChange to: ' + theme);
   }
+
 
   return (
     <View
-      style={ styles.container }
-      onPress={handleTheme}
+      style={styles.container}
     >
       <View style={styles.titleContainer}>
-        <Icon name="moon" color={ colors.text } size={28} />
-        <Text style={[ styles.title, { color: colors.text }]}>Modo escuro</Text>
+        <Icon name="moon" color={colors.text} size={28} />
+        <Text style={[styles.title, { color: colors.text }]}>Modo escuro</Text>
       </View>
 
       <Switch
-        style={{ transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]}}
-        value={themeMode === "dark" ? true : false}
+        style={{ transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }] }}
+        value={theme === "dark" ? true : false}
         onValueChange={handleTheme}
       />
     </View>

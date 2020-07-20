@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -10,14 +10,16 @@ import { Feather as Icon } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 
 import styles from './styles';
+import AuthContext from '../../contexts/auth';
 
-export default function Login({ navigation }) {
+export default function Login() {
   const [viewPassword, setViewPassword] = useState(false);
 
   const { colors } = useTheme();
+  const { signIn } = useContext(AuthContext);
 
-  function navigateToHome() {
-    navigation.navigate('Home');
+  function handleSignIn() {
+    signIn();
   }
 
   return (
@@ -33,7 +35,7 @@ export default function Login({ navigation }) {
             placeholderTextColor={ colors.placeholder }
             autoCompleteType="username"
             returnKeyType="next"
-           // onSubmitEditing={() => this.password.focus()}
+            onSubmitEditing={() => password.focus()}
           />
         </View>
 
@@ -41,12 +43,12 @@ export default function Login({ navigation }) {
           <Icon name="lock" size={20} color={colors.text} />
           <TextInput
             style={styles.input}
-          //  ref={(input) => this.password = input}
+            ref={(input) => password = input}
             placeholder="Senha..."
             placeholderTextColor={colors.placeholder}
             autoCompleteType="password"
             returnKeyType="done"
-            onSubmitEditing={navigateToHome}
+            onSubmitEditing={handleSignIn}
             secureTextEntry={viewPassword ? false : true}
           />
           { viewPassword ?
@@ -68,7 +70,7 @@ export default function Login({ navigation }) {
         
         <TouchableOpacity
           style={[styles.buttonLogin, { borderColor: colors.text }]}
-          onPress={navigateToHome}
+          onPress={handleSignIn}
         >
           <Text style={{ color: colors.text }}>Login</Text>
         </TouchableOpacity>

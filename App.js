@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StatusBar } from 'react-native';
-import ThemeContext from './src/context/ThemeContext';
+
+import { ThemeProvider } from './src/contexts/ThemeContext';
+import { AuthProvider } from './src/contexts/auth';
 
 import Routes from './src/routes';
 
 export default function App() {
-  const themeHook = useState('dark');
   return (
-    <ThemeContext.Provider value={themeHook}>
-      <StatusBar barStyle='light-content' />
-      <Routes />
-    </ThemeContext.Provider>
+    <ThemeProvider>
+      <AuthProvider>
+        <StatusBar barStyle='light-content' />
+        <Routes />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

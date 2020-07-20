@@ -1,40 +1,29 @@
 import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import AuthContext from '../contexts/auth';
+import ThemeContext from '../contexts/ThemeContext';
 
-import ThemeContext from '../context/ThemeContext';
+import AuthRoutes from './auth.routes';
+import AppRoutes from './app.routes';
 
-import Login from '../pages/Login';
-import DrawerNavigator from './DrawerNavigator';
 import DarkTheme from '../themes/DarkTheme';
 import LightTheme from '../themes/LightTheme';
 
-const Stack = createStackNavigator();
+import Loading from '../components/Loading';
 
-export default function Routes() {
-  const theme = useContext(ThemeContext)[0];
+export default function() {
+  const { theme } = useContext(ThemeContext);
+  const { signed, loading } = useContext(AuthContext);
+
+  if(loading) {
+    return <Loading />
+  }
+
+  console.log('Dark: ' + Boolean(theme === 'dark'))
+
   return (
     <NavigationContainer theme={theme === 'dark' ? DarkTheme : LightTheme}>
-      <Stack.Navigator
-        screenOptions={{
-          cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
-        }}
-      >
-        <Stack.Screen
-          component={Login}
-          options={{
-            headerShown: false,
-          }}
-          name="Login"
-        />
-        <Stack.Screen
-          name="Home"
-          component={DrawerNavigator}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
+      { signed ? <AppRoutes /> : <AuthRoutes /> }
     </NavigationContainer>
   );
 }
